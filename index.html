@@ -18,8 +18,11 @@
     </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.load("current", {packages:["corechart"]}).then(getData);
+      function getData() {    $.ajax({url: 'get_data.url',  dataType: 'JSON'}).done(function (data) {
+      drawChart(data);       
+    });
+}
       
       var sId = getParameterByName('sId');
       var sName = getParameterByName('sName');
@@ -33,7 +36,7 @@
         query.send(handleSampleDataQueryResponse);
       }
         
-      setTimeout(function handleSampleDataQueryResponse(response) {
+      function handleSampleDataQueryResponse(response) {
         if (response.isError()) {
           alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
           return;
@@ -53,9 +56,11 @@
         legend: {position: 'labeled'}
         };
 
+          setTimeout(getData, 5000);
+
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
-      },5000);
+      }
     </script>
 </head>
 <body>
