@@ -26,9 +26,6 @@
       var sId = getParameterByName('sId');
       var sName = getParameterByName('sName');
       var qStr = getParameterByName('qStr');
-      var width = getParameterByName('width');
-      var height = getParameterByName('height');
-      var colors = JSON.parse(getParameterByName('colors'));
       
       function drawChart() {
         var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sId + '/gviz/tq?sheet=' + sName + '&headers=1&tq=' + qStr);
@@ -57,7 +54,7 @@
         legend: {position: 'labeled'}
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        var chart = new google.visualization.Table(document.getElementById('table_div'));
         chart.draw(data, options);
       }
     </script>
@@ -67,7 +64,7 @@
     
 </head>
 <body>
-    <div id="donutchart"></div>
+    <div id="table_div"></div>
     
 </body>
 </html>
