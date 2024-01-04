@@ -28,10 +28,10 @@
       var height = getParameterByName('height');
       var colors = JSON.parse(getParameterByName('colors'));
       
-      setTimeout(function drawChart() {
+      function drawChart() {
         var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sId + '/gviz/tq?sheet=' + sName + '&headers=1&tq=' + qStr);
         query.send(handleSampleDataQueryResponse);
-      },5000);
+      }
         
       setTimeout(function handleSampleDataQueryResponse(response) {
         if (response.isError()) {
