@@ -16,10 +16,12 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
     </script>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.load("current", {packages:["corechart"]}).then(drawChart);
+      
       
       var sId = getParameterByName('sId');
       var sName = getParameterByName('sName');
@@ -52,6 +54,8 @@
         colors: colors,
         legend: {position: 'labeled'}
         };
+
+          setTimeout(drawChart, 5000);
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
