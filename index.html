@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<meta http-equiv="refresh">content="5"/> 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
@@ -19,9 +18,10 @@
     </script>
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script id="dataloader" type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
+      //google.charts.setOnLoadCallback(drawChart);
       
       var sId = getParameterByName('sId');
       var sName = getParameterByName('sName');
@@ -34,6 +34,8 @@
         var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sId + '/gviz/tq?sheet=' + sName + '&headers=1&tq=' + qStr);
         query.send(handleSampleDataQueryResponse);
       }
+
+      setInterval(drawChart, 5000);
         
       function handleSampleDataQueryResponse(response) {
         if (response.isError()) {
