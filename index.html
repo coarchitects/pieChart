@@ -18,7 +18,7 @@
     </script>
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+    <script id="dataloader" type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       
@@ -58,16 +58,20 @@
         chart.draw(data, options);
       }
     </script>
-</head>
-<body>
-    <div id="donutchart"></div>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
         function autoRefresh_div()
         {
-        $("#result").load("load.html");// a function which will load data from other file after x seconds
+        $("#dataloader").load("load.html");// a function which will load data from other file after x seconds
         }
-        setInterval('autoRefresh_div(donutchart)', 5000); 
+        setInterval('autoRefresh_div()', 5000); 
     </script>
+
+    
+</head>
+<body>
+    <div id="donutchart"></div>
+    
 </body>
 </html>
