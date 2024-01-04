@@ -16,12 +16,7 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
     </script>
-    <script>
-      $(document).ready(function() {setInterval(function() {cache_clear()}, 3000);});
-      function cache_clear() {
-        window.location.reload(true);}
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -66,5 +61,13 @@
 </head>
 <body>
     <div id="donutchart"></div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function autoRefresh_div()
+        {
+        $("#result").load("load.html");// a function which will load data from other file after x seconds
+        }
+        setInterval('autoRefresh_div(donutchart)', 5000); 
+    </script>
 </body>
 </html>
