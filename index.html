@@ -20,15 +20,23 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]}).then(handleSampleDataQueryResponse);
-      
-      
+      google.charts.load("current", {packages:["corechart"]}).then(getData);
+
+      function getData() {
+    $.ajax({
       var sId = getParameterByName('sId');
       var sName = getParameterByName('sName');
       var qStr = getParameterByName('qStr');
       var width = getParameterByName('width');
       var height = getParameterByName('height');
       var colors = JSON.parse(getParameterByName('colors'));
+    }).done(function (data) {
+      drawChart(data);      
+    });
+}
+      
+      
+      
       
       function drawChart() {
         var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/' + sId + '/gviz/tq?sheet=' + sName + '&headers=1&tq=' + qStr);
@@ -55,7 +63,7 @@
         legend: {position: 'labeled'}
         };
 
-          setTimeout(data, 5000);
+          setTimeout(getData, 5000);
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
